@@ -4,6 +4,8 @@ import com.example.bookstore_mongodb.entity.Book;
 import com.example.bookstore_mongodb.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 import java.util.List;
@@ -24,4 +26,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    // delete a book by id
+    public void deleteBook(String id) {
+        bookRepository.deleteById(id);
+    }
 }
