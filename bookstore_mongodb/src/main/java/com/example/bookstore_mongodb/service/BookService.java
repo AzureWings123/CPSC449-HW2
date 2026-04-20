@@ -26,7 +26,7 @@ public class BookService {
     }
 
     // delete a book by id
-    public ResponseEntity deleteBook(String id) {
+    public ResponseEntity<?> deleteBook(String id) {
         Book book = bookRepository.findById(id).orElse(null);
         if (book == null) {
             return ResponseEntity.status(404).body("Book not found.");
