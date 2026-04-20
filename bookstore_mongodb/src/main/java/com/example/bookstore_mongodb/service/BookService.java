@@ -3,6 +3,7 @@ package com.example.bookstore_mongodb.service;
 import com.example.bookstore_mongodb.entity.Book;
 import com.example.bookstore_mongodb.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +28,12 @@ public class BookService {
     }
 
     // delete a book by id
-    public void deleteBook(String id) {
-
+    public ResponseEntity deleteBook(String id) {
+        Book book = bookRepository.findById(id).orElse(null);
+        if (book == null) {
+            return ResponseEntity.status(404).body("Book not found.");
+        }
         bookRepository.deleteById(id);
+        return ResponseEntity.status(200).body("Deleted.");
     }
 }

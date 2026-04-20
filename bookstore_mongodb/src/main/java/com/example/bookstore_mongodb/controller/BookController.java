@@ -3,6 +3,7 @@ package com.example.bookstore_mongodb.controller;
 import com.example.bookstore_mongodb.entity.Book;
 import com.example.bookstore_mongodb.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class BookController {
 
     // delete a book by id
     @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable String id) {
-        bookService.deleteBook(id);
+    public ResponseEntity deleteBook(@PathVariable String id) {
+        return bookService.deleteBook(id);
     }
 }
